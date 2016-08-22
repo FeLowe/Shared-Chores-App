@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="grey">#EDEEEF</color>-->
+    <!--<color name="dark_green">#388E3C</color>-->
+
+    <!--<color name="dark_grey">#AEAEAE</color>-->
+
+    <!--<color name="accent">#DF4A32</color>-->
+
+    <!--<color name="primary">#83CF1C</color>-->
+    <!--<color name="primary_dark">#5AB831</color>-->
+    <!--<color name="primary_light">#DCEDC8</color>-->
+
+    <!--<color name="light_black">#747474</color>-->
+    <!--<color name="black">#616161</color>-->
+    <!--<color name="google">#C6412C</color>-->
+
+    <color name="colorPrimary">#FF5722</color>
+    <color name="colorPrimaryDark">#ff5722</color>
+    <color name="colorPrimaryLight">#FFCCBC</color>
+    <color name="colorTextIcons">#FFFFFF</color>
+    <color name="colorAccent">#009688</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#727272</color>
+    <color name="colorDivider">#B6B6B6</color>
+
+    <color name="colorBlueGrey100">#cfd8dc</color>
+    <color name="colorBlueGrey200">#B0BEC5</color>
+    <color name="colorBlueGrey500">#9E9E9E</color>
+    <color name="colorBlueGrey800">#37474F</color>
+    <color name="colorDeepOrange100">#ffccbc</color>
+    <color name="colorDeepOrange500">#ff5722</color>
+    <color name="colorDeepOrange800">#d84315</color>
+    <color name="colorGreyBackground">#d3d3d3</color>
+
+
+
+
+</resources>
