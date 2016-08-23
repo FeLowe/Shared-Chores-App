@@ -7,16 +7,28 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.epicodus.sharedchores.R;
+import com.epicodus.sharedchores.model.ChoreList;
 import com.epicodus.sharedchores.ui.activeLists.AddListDialogFragment;
 import com.epicodus.sharedchores.ui.activeLists.ChoreListsFragment;
 
+import com.epicodus.sharedchores.utils.Constants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,7 +39,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private ValueEventListener mUserRefListener;
     private Toolbar toolbar;
+    private Query mChoreListReference;
+    private ArrayAdapter mAdapter;
+
+    ArrayList<String> mChoreListArray = new ArrayList<>();
+
     @Bind(R.id.addListButton) Button mAddListButton;
+    @Bind(R.id.listView)
+    ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +60,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //        mUserRef = new Firebase(Constants.FIREBASE_URL_USERS).child(mEncodedEmail);
 
         initializeScreen();
+
+
+        mAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.single_active_list, mChoreListArray);
+        mListView.setAdapter(mAdapter);
+
+
+        mChoreListReference = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_URL_USER_LISTS)
+                .limitToLast(1);
+
+        mChoreListReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    Log.d("DATACHANGED", snapshot + " ");
+                    String listName = snapshot.getValue(ChoreList.class).getListName();
+                    mChoreListArray.add(listName);
+//                    Long timestamp = (Long)(snapshot.getValue());
+                    Log.d("TIMESTAMP", listName);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         /**
          * Add ValueEventListeners to Firebase references
@@ -155,64 +203,64 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     /**
      * SectionPagerAdapter class that extends FragmentStatePagerAdapter to save fragments state
      */
-    public class SectionPagerAdapter extends FragmentStatePagerAdapter {
-
-        public SectionPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        /**
-         * Use positions (0 and 1) to find and instantiate fragments with newInstance()
-         *
-         * @param position
-         */
-        @Override
-        public Fragment getItem(int position) {
-
-            Fragment fragment = null;
-
-            /**
-             * Set fragment to different fragments depending on position in ViewPager
-             */
-            switch (position) {
-                case 0:
-                    fragment = ChoreListsFragment.newInstance("");
-//                    fragment = ChoreListsFragment.newInstance(mEncodedEmail);
-
-                    break;
-//                case 1:
-//                    fragment = MealsFragment.newInstance();
+//    public class SectionPagerAdapter extends FragmentStatePagerAdapter {
+//
+//        public SectionPagerAdapter(FragmentManager fm) {
+//            super(fm);
+//        }
+//
+//        /**
+//         * Use positions (0 and 1) to find and instantiate fragments with newInstance()
+//         *
+//         * @param position
+//         */
+//        @Override
+//        public Fragment getItem(int position) {
+//
+//            Fragment fragment = null;
+//
+//            /**
+//             * Set fragment to different fragments depending on position in ViewPager
+//             */
+//            switch (position) {
+//                case 0:
+//                    fragment = ChoreListsFragment.newInstance("");
+////                    fragment = ChoreListsFragment.newInstance(mEncodedEmail);
+//
 //                    break;
-                default:
-                    fragment = ChoreListsFragment.newInstance("");
-//                    fragment = ChoreListsFragment.newInstance(mEncodedEmail);
-
-                    break;
-            }
-
-            return fragment;
-        }
-
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        /**
-         * Set string resources as titles for each fragment by it's position
-         *
-         * @param position
-         */
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                default:
-                case 0:
-                    return ("Chore Lists");
-
-
-            }
-        }
-    }
+////                case 1:
+////                    fragment = MealsFragment.newInstance();
+////                    break;
+//                default:
+//                    fragment = ChoreListsFragment.newInstance("");
+////                    fragment = ChoreListsFragment.newInstance(mEncodedEmail);
+//
+//                    break;
+//            }
+//
+//            return fragment;
+//        }
+//
+//
+//        @Override
+//        public int getCount() {
+//            return 2;
+//        }
+//
+//        /**
+//         * Set string resources as titles for each fragment by it's position
+//         *
+//         * @param position
+//         */
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//            switch (position) {
+//                default:
+//                case 0:
+//                    return ("Chore Lists");
+//
+//
+//            }
+//        }
+//    }
 }

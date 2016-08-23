@@ -9,20 +9,19 @@
         android:label="Shared Chores"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/Theme.AppCompat">
 
+        </activity>
+        <activity android:name=".ui.activeLists.ChoreListDetailActivity" />
+        <activity android:name=".ui.activeLists.ChoreListsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
     </application>
 
-</manifest>
-
-    <!--android:theme="@style/AppTheme.NoActionBar"-->
+</manifest> <!-- android:theme="@style/AppTheme.NoActionBar" -->

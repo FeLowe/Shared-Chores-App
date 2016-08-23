@@ -4,11 +4,14 @@ import com.epicodus.sharedchores.utils.Constants;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.ServerValue;
 
+import org.parceler.Parcel;
+
 import java.util.HashMap;
 
 /**
  * Defines the data structure for both Active and Archived ChoreList objects.
  */
+@Parcel
 @IgnoreExtraProperties
 public class ChoreList {
     private String listName;
