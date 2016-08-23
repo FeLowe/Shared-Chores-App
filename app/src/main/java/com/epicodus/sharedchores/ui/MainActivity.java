@@ -17,7 +17,6 @@ import android.widget.ListView;
 import com.epicodus.sharedchores.R;
 import com.epicodus.sharedchores.model.ChoreList;
 import com.epicodus.sharedchores.ui.activeLists.AddListDialogFragment;
-import com.epicodus.sharedchores.ui.activeLists.ChoreListsFragment;
 
 import com.epicodus.sharedchores.utils.Constants;
 import com.google.firebase.database.DataSnapshot;
@@ -45,8 +44,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     ArrayList<String> mChoreListArray = new ArrayList<>();
 
     @Bind(R.id.addListButton) Button mAddListButton;
-    @Bind(R.id.listView)
-    ListView mListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,34 +59,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
         initializeScreen();
 
-
-        mAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.single_active_list, mChoreListArray);
-        mListView.setAdapter(mAdapter);
-
-
-        mChoreListReference = FirebaseDatabase
-                .getInstance()
-                .getReference(Constants.FIREBASE_URL_USER_LISTS)
-                .limitToLast(1);
-
-        mChoreListReference.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    Log.d("DATACHANGED", snapshot + " ");
-                    String listName = snapshot.getValue(ChoreList.class).getListName();
-                    mChoreListArray.add(listName);
-//                    Long timestamp = (Long)(snapshot.getValue());
-                    Log.d("TIMESTAMP", listName);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//todo: this function is now happening on choreListsActivity
+//        mAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.single_active_list, mChoreListArray);
+//        mListView.setAdapter(mAdapter);
+//
+//
+//        mChoreListReference = FirebaseDatabase
+//                .getInstance()
+//                .getReference(Constants.FIREBASE_URL_USER_LISTS)
+//                .limitToLast(1);
+//
+//        mChoreListReference.addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+////                    Log.d("DATACHANGED", snapshot + " ");
+//                    String listName = snapshot.getValue(ChoreList.class).getListName();
+//                    mChoreListArray.add(listName);
+////                    Long timestamp = (Long)(snapshot.getValue());
+//                    Log.d("TIMESTAMP", listName);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         /**
          * Add ValueEventListeners to Firebase references
