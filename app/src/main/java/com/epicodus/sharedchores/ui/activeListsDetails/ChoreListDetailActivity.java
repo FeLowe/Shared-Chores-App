@@ -2,8 +2,10 @@ package com.epicodus.sharedchores.ui.activeListsDetails;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ChoreListDetailActivity extends Activity implements View.OnClickListener {
+public class ChoreListDetailActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
     private ListView mListView;
     private ChoreList mChoreList;
@@ -29,7 +31,7 @@ public class ChoreListDetailActivity extends Activity implements View.OnClickLis
 
         initializeScreen();
 
-                mDatabaseReference = FirebaseDatabase
+        mDatabaseReference = FirebaseDatabase
                 .getInstance()
                 .getReference(Constants.FIREBASE_URL_ACTIVE_LIST);
 
@@ -67,50 +69,48 @@ public class ChoreListDetailActivity extends Activity implements View.OnClickLis
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public boolean onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 /* Check that the view is not the empty footer item */
-                if(view.getId() != R.id.list_view_footer_empty) {
+                if (view.getId() != R.id.list_view_footer_empty) {
                     showEditListItemNameDialog();
                 }
-                return true;
+            }
+        });
+
+
+//    @Override
+//    public void onClick(View v) {
+////        if (v == mAddListButton) {
+////            showAddListDialog();
+////        }
+//    }
+
+
+        /**
+         * Link layout elements from XML and setup the toolbar
+         */
+
+
+        /**
+
+
+         /**
+         * Set up click listeners for interaction.
+         */
+
+        /* Show edit list item name dialog on listView item long click event */
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                /* Check that the view is not the empty footer item */
+                if (view.getId() != R.id.list_view_footer_empty) {
+                    showEditListItemNameDialog();
+                }
             }
         });
     }
 
-    @Override
-    public void onClick(View v) {
-//        if (v == mAddListButton) {
-//            showAddListDialog();
-//        }
-    }
-
-
-
-    /**
-     * Link layout elements from XML and setup the toolbar
-     */
-
-
-    /**
-
-
-    /**
-     * Set up click listeners for interaction.
-     */
-
-        /* Show edit list item name dialog on listView item long click event */
-    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-        @Override
-        public boolean onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /* Check that the view is not the empty footer item */
-            if(view.getId() != R.id.list_view_footer_empty) {
-                showEditListItemNameDialog();
-            }
-            return true;
-        }
-    });
-}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -187,6 +187,8 @@ public class ChoreListDetailActivity extends Activity implements View.OnClickLis
     private void initializeScreen() {
         mListView = (ListView) findViewById(R.id.list_view_shopping_list_items);
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        toolbar.setTitle("placeholder");
+
         /* Common toolbar setup */
         setSupportActionBar(toolbar);
         /* Add back button to the action bar */
@@ -205,22 +207,14 @@ public class ChoreListDetailActivity extends Activity implements View.OnClickLis
     public void archiveList() {
     }
 
-
-    /**
-     * Start AddItemsFromMealActivity to add meal ingredients into the shopping list
-     * when the user taps on "add meal" fab
-     */
-    public void addMeal(View view) {
-    }
-
-    /**
-     * Remove current shopping list and its items from all nodes
-     */
-    public void removeList() {
-        /* Create an instance of the dialog fragment and show it */
-        DialogFragment dialog = RemoveListDialogFragment.newInstance(mShoppingList);
-        dialog.show(getFragmentManager(), "RemoveListDialogFragment");
-    }
+    //TODO: Try to implement this functions later
+//     Remove current shopping list and its items from all nodes
+//
+//    public void removeList() {
+//        /* Create an instance of the dialog fragment and show it */
+//        DialogFragment dialog = RemoveListDialogFragment.newInstance(mShoppingList);
+//        dialog.show(getFragmentManager(), "RemoveListDialogFragment");
+//    }
 
     /**
      * Show the add list item dialog when user taps "Add list item" fab

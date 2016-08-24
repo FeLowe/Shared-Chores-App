@@ -25,11 +25,8 @@ import butterknife.ButterKnife;
 
 public class ChoreListsActivity extends Activity implements View.OnClickListener{
     private DatabaseReference mUserRef;
-    private ValueEventListener mUserRefListener;
     private Toolbar toolbar;
     private Query mChoreListReference;
-//    private ArrayAdapter mAdapter;
-    private FirebaseViewHolder mAdapter;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
 
     ArrayList<ChoreList> mChoreListArray = new ArrayList<>();
@@ -49,7 +46,7 @@ public class ChoreListsActivity extends Activity implements View.OnClickListener
 
         mChoreListReference = FirebaseDatabase
                 .getInstance()
-                .getReference(Constants.FIREBASE_URL_USER_LISTS)
+                .getReference(Constants.FIREBASE_URL_USER_CHORE_LISTS)
                 .limitToLast(1);
         displayData();
     }

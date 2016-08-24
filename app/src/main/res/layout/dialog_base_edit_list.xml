@@ -7,15 +7,15 @@
     android:paddingLeft="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.activeListsDetails.ChoreListDetailActivity">
 
     <EditText
-        android:id="@+id/listNameEditText"
+        android:id="@+id/edit_text_list_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_add_chore_list"
         android:imeOptions="actionDone|flagNoExtractUi"
-        android:inputType="text"
+        android:inputType="textCapWords"
         android:textColor="@color/colorPrimaryText"
-        android:textColorHint="@color/colorSecondaryText" />
+        android:textColorHint="@color/colorPrimaryText"
+        android:hint="new list name"/>
 </RelativeLayout>
