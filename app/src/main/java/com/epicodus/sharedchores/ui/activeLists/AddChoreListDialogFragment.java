@@ -49,7 +49,7 @@ public class AddChoreListDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mEncodedEmail = getArguments().getString(Constants.KEY_ENCODED_EMAIL);
+//        mEncodedEmail = getArguments().getString(Constants.KEY_ENCODED_EMAIL);
     }
 
     /**
@@ -110,7 +110,7 @@ public class AddChoreListDialogFragment extends DialogFragment {
 
             DatabaseReference userListsRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_URL_USER_CHORE_LISTS).push();
+                    .getReference(Constants.FIREBASE_USER_CHORE_LIST).push();
 
             HashMap<String, Object> timestampCreated = new HashMap<>();
             timestampCreated.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);

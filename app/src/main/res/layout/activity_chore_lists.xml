@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorDivider"
-    tools:context=".ui.activeLists.ChoreListsActivity">
+    tools:context=".ui.activeLists.ChoreListActivity">
 
     <!--<ListView-->
         <!--android:id="@+id/listView"-->

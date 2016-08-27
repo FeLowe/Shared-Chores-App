@@ -8,16 +8,17 @@ import com.epicodus.sharedchores.BuildConfig;
 public final class Constants {
 
     /**
-     * Constants related to locations in Firebase, such as the name of the node
-     * where user lists are stored (ie "userLists")
+     * Constants for Firebase URL
      */
-     public static final String FIREBASE_LOCATION_USER_CHORES = "userChores";
-     public static final String FIREBASE_LOCATION_USERS = "users";
-     public static final String FIREBASE_LOCATION_USER_CHORE_LIST = "userChoreList";
-    public static final String FIREBASE_LOCATION_ACTIVE_LIST = "activeList";
-     public static final String FIREBASE_LOCATION_USER_FRIENDS = "userFriends";
-     public static final String FIREBASE_LOCATION_LISTS_SHARED_WITH = "sharedWith";
-     public static final String FIREBASE_LOCATION_UID_MAPPINGS = "uidMappings";
+
+    public static final String FIREBASE_URL = BuildConfig.UNIQUE_FIREBASE_ROOT_URL;
+    public static final String FIREBASE_USER_CHORES = "userChores";
+     public static final String FIREBASE_USERS = "users";
+     public static final String FIREBASE_USER_CHORE_LIST = "userChoreList";
+    public static final String FIREBASE_CHORE_LIST = "Lists";
+     public static final String FIREBASE_USER_FRIENDS = "userFriends";
+     public static final String FIREBASE_LISTS_SHARED_WITH = "sharedWith";
+     public static final String FIREBASE_UID_MAPPINGS = "uidMappings";
      public static final String FIREBASE_LOCATION_OWNER_MAPPINGS = "ownerMappings";
 
 
@@ -40,13 +41,13 @@ public final class Constants {
     /**
      * Constants for Firebase URL
      */
-    public static final String FIREBASE_URL = BuildConfig.UNIQUE_FIREBASE_ROOT_URL;
-    public static final String FIREBASE_URL_USER_CHORES = FIREBASE_LOCATION_USER_CHORES;
-    public static final String FIREBASE_URL_USERS = FIREBASE_LOCATION_USERS;
-    public static final String FIREBASE_URL_USER_CHORE_LISTS = FIREBASE_LOCATION_USER_CHORE_LIST;
-    public static final String FIREBASE_URL_USER_FRIENDS = FIREBASE_URL + FIREBASE_LOCATION_USER_FRIENDS;
-    public static final String FIREBASE_URL_LISTS_SHARED_WITH = FIREBASE_URL + FIREBASE_LOCATION_LISTS_SHARED_WITH;
-    public static final String FIREBASE_URL_ACTIVE_LIST = FIREBASE_LOCATION_ACTIVE_LIST;
+//    public static final String FIREBASE_URL = BuildConfig.UNIQUE_FIREBASE_ROOT_URL;
+////    public static final String FIREBASE_URL_USER_CHORES = FIREBASE_LOCATION_CHORES;
+//    public static final String FIREBASE_URL_USERS = FIREBASE_LOCATION_USERS;
+//    public static final String FIREBASE_URL_USER_CHORE_LISTS = FIREBASE_LOCATION_USER_CHORE_LIST;
+//    public static final String FIREBASE_URL_USER_FRIENDS = FIREBASE_URL + FIREBASE_LOCATION_USER_FRIENDS;
+//    public static final String FIREBASE_URL_LISTS_SHARED_WITH = FIREBASE_URL + FIREBASE_LOCATION_LISTS_SHARED_WITH;
+//    public static final String FIREBASE_URL_ACTIVE_LIST = FIREBASE_LOCATION_ACTIVE_LIST;
 
 
     /**

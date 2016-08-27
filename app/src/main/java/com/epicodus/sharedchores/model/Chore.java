@@ -4,52 +4,60 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import org.parceler.Parcel;
 
+import java.util.HashMap;
+
 @Parcel
 @IgnoreExtraProperties
 public class Chore {
-    private String choreTitle;
-    private String choreDoer;
-    private String choreDescription;
-    private long choreDueDate;
-    private String choreDoneBy;
-    private boolean choreDone;
+    private String title;
+    private String doer;
+    private String description;
+    private String dueDate;
+    private String doneBy;
+    private boolean done;
+    private HashMap<String, Object> timestampCreated;
 
     Chore() {
     }
 
-    public Chore (String choreTitle, String choreDoer, String choreDescription, long choreDueDate){
-        this.choreTitle = choreTitle;
-        this.choreDoer = choreDoer;
-        this.choreDescription = choreDescription;
-        this.choreDueDate = choreDueDate;
-        this.choreDoneBy = null;
-        this.choreDone = false;
+    public Chore (String title, String doer, String description, String dueDate, HashMap<String, Object> timestampCreated){
+        this.title = title;
+        this.doer = doer;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.timestampCreated = timestampCreated;
+        this.doneBy = null;
+        this.done = false;
 
 
     }
 
-    public String getChoreTitle() {
-        return choreTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public String getChoreDoer() {
-        return choreDoer;
+    public String getDoer() {
+        return doer;
     }
 
-    public String getChoreDescription() {
-        return choreDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public long getChoreDueDate() {
-        return choreDueDate;
+    public String getDueDate() {
+        return dueDate;
     }
 
-    public String getChoreDoneBy() {
-        return choreDoneBy;
+    public HashMap<String, Object> getTimestampCreated() {
+        return timestampCreated;
+    }
+
+    public String getDoneBy() {
+        return doneBy;
     }
 
     public boolean isChoreDone() {
-        return choreDone;
+        return done;
     }
 
 }

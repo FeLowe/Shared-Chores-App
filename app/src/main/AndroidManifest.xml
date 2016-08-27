@@ -15,7 +15,7 @@
 
         </activity>
         <activity android:name=".ui.activeListsDetails.ChoreListDetailsActivity" />
-        <activity android:name=".ui.activeLists.ChoreListsActivity">
+        <activity android:name=".ui.activeLists.ChoreListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

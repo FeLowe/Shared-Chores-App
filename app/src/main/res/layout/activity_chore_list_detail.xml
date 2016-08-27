@@ -5,47 +5,47 @@
     android:layout_height="match_parent"
     tools:context="com.epicodus.sharedchores.ui.activeLists.ChoreListDetailActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:theme="@style/Toolbar" />
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/app_bar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:theme="@style/Toolbar" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            android:visibility="gone">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:padding="8dp"-->
+            <!--android:visibility="gone">-->
 
-            <TextView
-                android:id="@+id/text_view_people_shopping"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:textSize="@dimen/list_item_text_size" />
+            <!--<TextView-->
+                <!--android:id="@+id/text_view_people_shopping"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="start"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textSize="@dimen/list_item_text_size" />-->
 
-            <Button
-                android:id="@+id/button_shopping"
-                android:layout_gravity="end"
-                android:onClick="toggleShopping"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            <!--<Button-->
+                <!--android:id="@+id/button_shopping"-->
+                <!--android:layout_gravity="end"-->
+                <!--android:onClick="toggleShopping"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
 
-        <ListView
-            android:id="@+id/listNameTextView"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none" />
-    </LinearLayout>
+
 
     <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/addChorebutton"
