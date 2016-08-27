@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ui.activeListsDetails.ChoreListDetailActivity">
+    tools:context=".ui.activeListsDetails.ChoreListDetailsActivity">
 
     <EditText
         android:id="@+id/edit_text_list_dialog"
@@ -17,5 +17,5 @@
         android:inputType="textCapWords"
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorPrimaryText"
-        android:hint="new list name"/>
+        android:hint="new iput"/>
 </RelativeLayout>

@@ -22,24 +22,23 @@ import com.google.firebase.database.ServerValue;
 
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Adds a new chore list
  */
-public class AddListDialogFragment extends DialogFragment {
+public class AddChoreListDialogFragment extends DialogFragment {
     String mEncodedEmail;
-    EditText mEditTextListName;
+    EditText mListNameEditText;
     private DatabaseReference mDatabaseReference;
 
     /**
      * Public static constructor that creates fragment and
      * passes a bundle with data into it when adapter is created
      */
-    public static AddListDialogFragment newInstance(String encodedEmail) {
-        AddListDialogFragment addListDialogFragment = new AddListDialogFragment();
+    public static AddChoreListDialogFragment newInstance() {
+        AddChoreListDialogFragment addListDialogFragment = new AddChoreListDialogFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(Constants.KEY_ENCODED_EMAIL, encodedEmail);
+//        bundle.putString(Constants.KEY_ENCODED_EMAIL, encodedEmail);
         addListDialogFragment.setArguments(bundle);
         return addListDialogFragment;
     }
@@ -64,16 +63,16 @@ public class AddListDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()).setTitle("create a chore List");
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()).setTitle("create a chore list");
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View rootView = inflater.inflate(R.layout.dialog_add_list, null);
-        mEditTextListName = (EditText) rootView.findViewById(R.id.edit_text_list_dialog);
+        mListNameEditText = (EditText) rootView.findViewById(R.id.listNameEditText);
 
         /**
          * Call addChoreList() when user taps "Done" keyboard action
          */
-        mEditTextListName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        mListNameEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if (actionId == EditorInfo.IME_ACTION_DONE || keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
@@ -87,13 +86,13 @@ public class AddListDialogFragment extends DialogFragment {
         /* Pass null as the parent view because its going in the dialog layout*/
         builder.setView(rootView)
                 /* Add action buttons */
-                .setPositiveButton(R.string.positive_button_create, new DialogInterface.OnClickListener() {
+                .setPositiveButton("create", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         addChoreList();
                     }
                 })
-                .setNegativeButton("Cancel",
+                .setNegativeButton("cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 dialog.dismiss();
@@ -104,20 +103,20 @@ public class AddListDialogFragment extends DialogFragment {
     }
 
     public void addChoreList() {
-        String listName = mEditTextListName.getText().toString();
+        String listName = mListNameEditText.getText().toString().trim();
+        String listOwner = " Anonymous Owner";
 //        If EditText input is not empty
         if (!listName.equals("")) {
 
             DatabaseReference userListsRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_URL_USER_CHORE_LISTS).
-                    child(mEncodedEmail).push();
+                    .getReference(Constants.FIREBASE_URL_USER_CHORE_LISTS).push();
 
             HashMap<String, Object> timestampCreated = new HashMap<>();
             timestampCreated.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
 
             /* Build the chore list */
-            ChoreList newChoreList = new ChoreList(listName, mEncodedEmail, timestampCreated);
+            ChoreList newChoreList = new ChoreList(listName, "Anonymous Owner", timestampCreated);
             String listId = userListsRef.getKey();
             userListsRef.setValue(newChoreList);
 
@@ -135,7 +134,7 @@ public class AddListDialogFragment extends DialogFragment {
                 }
 
             /* Close the dialog fragment */
-            AddListDialogFragment.this.getDialog().cancel();
+            AddChoreListDialogFragment.this.getDialog().cancel();
         }
     }
 

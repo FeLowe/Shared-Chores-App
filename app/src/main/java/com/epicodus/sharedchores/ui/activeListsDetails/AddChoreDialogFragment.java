@@ -1,17 +1,13 @@
 package com.epicodus.sharedchores.ui.activeListsDetails;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -27,15 +23,15 @@ import com.google.firebase.database.ServerValue;
 
 import java.util.HashMap;
 
-public class AddListItemDialogFragment extends DialogFragment {
+public class AddChoreDialogFragment extends DialogFragment {
     EditText mItemNameEditText;
     private DatabaseReference mDatabaseReference;
 
 
 //  constructor that creates fragment and passes a bundle with data into it when adapter is created
 
-    public static AddListItemDialogFragment newInstance(ChoreList choreList) {
-        AddListItemDialogFragment addListItemDialogFragment = new AddListItemDialogFragment();
+    public static AddChoreDialogFragment newInstance(ChoreList choreList) {
+        AddChoreDialogFragment addListItemDialogFragment = new AddChoreDialogFragment();
         Bundle bundle = new Bundle();
 //        Bundle bundle = newInstanceHelper(choreList, R.layout.dialog_add_list_item);
         addListItemDialogFragment.setArguments(bundle);
@@ -99,8 +95,9 @@ public class AddListItemDialogFragment extends DialogFragment {
 
     public void addChore() {
         String choreTitle = mItemNameEditText.getText().toString();
-//        If EditText input is not empty
-        if (!choreTitle.equals("")) {
+//        String choreDescription = mItemNameEditText.getText().toString();
+//        String dueDate = mItemNameEditText.getText().toString();
+
 
             DatabaseReference userChoresRef = FirebaseDatabase
                     .getInstance()
@@ -110,14 +107,13 @@ public class AddListItemDialogFragment extends DialogFragment {
             HashMap<String, Object> timestampCreated = new HashMap<>();
             timestampCreated.put(Constants.FIREBASE_PROPERTY_TIMESTAMP, ServerValue.TIMESTAMP);
 
-            Chore newChore = new Chore(" ", " ", " ", 1829209388);
+            Chore newChore = new Chore(choreTitle, "Testing discripton", "doer: Fernanda", 12122016);
             String choreId = userChoresRef.getKey();
             userChoresRef.setValue(newChore);
 
         }
-            /* Close the dialog fragment */
-        AddListItemDialogFragment.this.getDialog().cancel();
+
     }
 
 
-}
+

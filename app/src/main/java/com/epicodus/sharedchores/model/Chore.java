@@ -1,8 +1,11 @@
 package com.epicodus.sharedchores.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import org.parceler.Parcel;
 
 @Parcel
+@IgnoreExtraProperties
 public class Chore {
     private String choreTitle;
     private String choreDoer;

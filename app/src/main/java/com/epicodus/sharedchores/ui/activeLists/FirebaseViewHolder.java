@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.epicodus.sharedchores.R;
 import com.epicodus.sharedchores.model.ChoreList;
+import com.epicodus.sharedchores.ui.activeListsDetails.ChoreListDetailsActivity;
 import com.epicodus.sharedchores.utils.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -84,7 +85,7 @@ import butterknife.ButterKnife;
 //         public void onClick(View v) {
 //             Log.d("click listener", "working!");
 //             int itemPosition = getLayoutPosition();
-//             Intent intent = new Intent(mContext, ChoreListDetailActivity.class);
+//             Intent intent = new Intent(mContext, ChoreListDetailsActivity.class);
 //             intent.putExtra("position", itemPosition + "");
 //             intent.putExtra("choreLists", Parcels.wrap(mChoreList));
 //             mContext.startActivity(intent);
@@ -92,7 +93,8 @@ import butterknife.ButterKnife;
 //     }
 // }
 
-public class FirebaseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+public class FirebaseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     View mView;
     Context mContext;
@@ -106,19 +108,23 @@ public class FirebaseViewHolder extends RecyclerView.ViewHolder implements View.
         itemView.setOnClickListener(this);
     }
 
-    public void bindChoreList(ChoreList choreList) {
+    public void bindChoreList(final ChoreList choreList) {
         TextView listNameTextView = (TextView) mView.findViewById(R.id.listNameTextView);
         TextView createdByTextView = (TextView) mView.findViewById(R.id.createdByTextView);
         TextView createdByUserTextView = (TextView) mView.findViewById(R.id.createdByUserTextView);
 
         listNameTextView.setText(choreList.getListName());
-        createdByTextView.setText("PLACEHOLHER");
-        createdByUserTextView.setText("PLACEHOLDER");
+        createdByTextView.setText(choreList.getOwner());
+        createdByUserTextView.setText("createdByUserFB-PLACEHOLDER");
+
     }
+
     @Override
     public void onClick(View view) {
         final ArrayList<ChoreList> choreLists = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_URL_USER_LISTS);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference(Constants.FIREBASE_URL_ACTIVE_LIST);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -129,11 +135,12 @@ public class FirebaseViewHolder extends RecyclerView.ViewHolder implements View.
 
                 int itemPosition = getLayoutPosition();
 
-                Intent intent = new Intent(mContext, ChoreListDetailActivity.class);
+                Intent intent = new Intent(mContext, ChoreListDetailsActivity.class);
                 intent.putExtra("position", itemPosition + "");
                 intent.putExtra("choreLists", Parcels.wrap(choreLists));
-
                 mContext.startActivity(intent);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
             }
 
             @Override

@@ -22,18 +22,16 @@ import com.google.android.gms.common.api.Status;
  */
 public abstract class BaseActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
-    protected String mProvider, mEncodedEmail;
-    /* Client used to interact with Google APIs. */
-//    private FirebaseAuth mAuth;
-//    private FirebaseAuth.AuthStateListener mAuthListener;
-//
-//    protected GoogleApiClient mGoogleApiClient;
-//    protected FirebaseAuth.AuthStateListener mAuthListener;
-//    protected Firebase mFirebaseRef;
+
+    protected GoogleApiClient mGoogleApiClient;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         /* Setup the Google API object to allow Google logins */
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -131,39 +129,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
             linearLayout.setBackgroundResource(R.drawable.background_loginscreen);
         }
     }
-
-    /**
-     * Logs out the user from their current session and starts LoginActivity.
-     * Also disconnects the mGoogleApiClient if connected and provider is Google
-     */
-//    protected void logout() {
-//
-//        /* Logout if mProvider is not null */
-//        if (mProvider != null) {
-//            mFirebaseRef.unauth();
-//
-//            if (mProvider.equals(Constants.GOOGLE_PROVIDER)) {
-//
-//                /* Logout from Google+ */
-////                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-////                        new ResultCallback<Status>() {
-////                            @Override
-////                            public void onResult(Status status) {
-////                                //nothing
-////                            }
-//
-//            }
-//        }
-//    }
-
-//    private void takeUserToLoginScreenOnUnAuth() {
-//        /* Move user to LoginActivity, and remove the backstack */
-//        Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(intent);
-//        finish();
-//    }
-
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
     }

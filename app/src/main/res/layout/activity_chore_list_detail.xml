@@ -41,29 +41,14 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/list_view_shopping_list_items"
+            android:id="@+id/listNameTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/fab_detail_add_meal"
-        style="@style/FAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/fab_detail_add_item"
-        android:layout_toStartOf="@+id/fab_detail_add_item"
-        android:onClick="addMeal"
-        android:src="@drawable/abc_ic_menu_copy_mtrl_am_alpha"
-        app:borderWidth="0dp"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        android:visibility="gone"/>
-
-    <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/fab_detail_add_item"
+        android:id="@+id/addChorebutton"
         style="@style/FAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

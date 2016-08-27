@@ -7,7 +7,7 @@ android:paddingBottom="@dimen/activity_vertical_margin"
 android:paddingLeft="@dimen/activity_vertical_margin"
 android:paddingRight="@dimen/activity_vertical_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
-tools:context=".ui.activeListsDetails.ChoreListDetailActivity">
+tools:context=".ui.activeListsDetails.ChoreListDetailsActivity">
 
 <EditText
     android:id="@+id/itemNameEditText"

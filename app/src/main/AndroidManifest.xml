@@ -14,7 +14,7 @@
             android:theme="@style/Theme.AppCompat">
 
         </activity>
-        <activity android:name=".ui.activeListsDetails.ChoreListDetailActivity" />
+        <activity android:name=".ui.activeListsDetails.ChoreListDetailsActivity" />
         <activity android:name=".ui.activeLists.ChoreListsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

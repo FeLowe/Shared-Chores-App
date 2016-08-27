@@ -2,29 +2,17 @@ package com.epicodus.sharedchores.ui;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
 import com.epicodus.sharedchores.R;
-import com.epicodus.sharedchores.model.ChoreList;
-import com.epicodus.sharedchores.ui.activeLists.AddListDialogFragment;
+import com.epicodus.sharedchores.ui.activeLists.AddChoreListDialogFragment;
 
-import com.epicodus.sharedchores.utils.Constants;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -191,9 +179,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
      */
     public void showAddListDialog() {
         /* Create an instance of the dialog fragment and show it */
-        DialogFragment dialog = AddListDialogFragment.newInstance("");
-//        DialogFragment dialog = AddListDialogFragment.newInstance(mEncodedEmail);
-        dialog.show(MainActivity.this.getFragmentManager(), "AddListDialogFragment");
+        DialogFragment dialog = AddChoreListDialogFragment.newInstance();
+//        DialogFragment dialog = AddChoreListDialogFragment.newInstance(mEncodedEmail);
+        dialog.show(MainActivity.this.getFragmentManager(), "AddChoreListDialogFragment");
     }
 
 
