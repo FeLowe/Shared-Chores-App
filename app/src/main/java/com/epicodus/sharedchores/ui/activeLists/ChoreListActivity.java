@@ -1,5 +1,6 @@
 package com.epicodus.sharedchores.ui.activeLists;
 
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,72 @@ import com.google.firebase.database.Query;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ChoreListActivity extends AppCompatActivity implements View.OnClickListener{
+//public class ChoreListActivity extends Activity implements View.OnClickListener{
+//    private Toolbar toolbar;
+//    private Query mChoreListReference;
+//    private FirebaseRecyclerAdapter mFirebaseAdapter;
+//
+//    @Bind(R.id.addListButton) Button mAddListButton;
+//    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_chore_lists);
+//
+//        ButterKnife.bind(this);
+//
+//        mAddListButton.setOnClickListener(this);
+//
+//
+//        mChoreListReference = FirebaseDatabase
+//                .getInstance()
+//                .getReference(Constants.FIREBASE_CHORE_LIST)
+//                .limitToLast(1);
+//        displayData();
+//    }
+//
+//    @Override
+//    public void onClick(View v) {
+//        if (v == mAddListButton) {
+//            showAddListDialog();
+//
+//        }
+//    }
+//
+//    public void showAddListDialog() {
+//        DialogFragment dialog = AddChoreListDialogFragment.newInstance();
+//        dialog.show(ChoreListActivity.this.getFragmentManager(), "AddChoreListDialogFragment");
+//
+//    }
+//
+//private void displayData(){
+//
+//    mFirebaseAdapter = new FirebaseRecyclerAdapter<ChoreList, ListViewHolder>
+//            (ChoreList.class, R.layout.single_active_list, ListViewHolder.class, mChoreListReference) {
+//
+//        @Override
+//        protected void populateViewHolder(ListViewHolder viewHolder,
+//                                          ChoreList model, int position) {
+//            viewHolder.bindList(model);
+//        }
+//
+//
+//    };
+//    mRecyclerView.setHasFixedSize(true);
+//    mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//    mRecyclerView.setAdapter(mFirebaseAdapter);
+//}
+//
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        mFirebaseAdapter.cleanup();
+//    }
+//}
+
+public class ChoreListActivity extends Activity implements View.OnClickListener{
     private Toolbar toolbar;
     private Query mChoreListReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
@@ -29,6 +95,11 @@ public class ChoreListActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mChoreListReference = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_USER_CHORE_LIST)
+                .limitToLast(1);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chore_lists);
 
@@ -37,10 +108,7 @@ public class ChoreListActivity extends AppCompatActivity implements View.OnClick
         mAddListButton.setOnClickListener(this);
 
 
-        mChoreListReference = FirebaseDatabase
-                .getInstance()
-                .getReference(Constants.FIREBASE_CHORE_LIST)
-                .limitToLast(1);
+
         displayData();
     }
 
@@ -58,21 +126,24 @@ public class ChoreListActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-private void displayData(){
+    private void displayData(){
 
-    mFirebaseAdapter = new FirebaseRecyclerAdapter<ChoreList, ListViewHolder>
-            (ChoreList.class, R.layout.single_active_list, ListViewHolder.class, mChoreListReference) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<ChoreList, ListViewHolder>
+                (ChoreList.class, R.layout.single_active_list, ListViewHolder.class, mChoreListReference) {
 
-        @Override
-        protected void populateViewHolder(ListViewHolder viewHolder,
-                                          ChoreList model, int position) {
-            viewHolder.bindList(model);
-        }
-    };
-    mRecyclerView.setHasFixedSize(true);
-    mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-    mRecyclerView.setAdapter(mFirebaseAdapter);
-}
+            @Override
+            protected void populateViewHolder(ListViewHolder viewHolder,
+                                              ChoreList model, int position) {
+                viewHolder.bindList(model);
+            }
+
+
+        };
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mFirebaseAdapter);
+    }
+
 
     @Override
     protected void onDestroy() {

@@ -53,12 +53,13 @@ public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         final ArrayList<ChoreList> choreLists = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance()
-                .getReference(Constants.FIREBASE_CHORE_LIST);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                .getReference(Constants.FIREBASE_USER_CHORE_LIST);
+        ref.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d("DATA HAS CHAGED", snapshot + "");
                     choreLists.add(snapshot.getValue(ChoreList.class));
                 }
 
@@ -77,4 +78,5 @@ public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnCl
             }
         });
     }
+
 }

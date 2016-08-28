@@ -32,7 +32,10 @@
         android:layout_alignStart="@+id/choreTitleTextView"
         android:layout_marginTop="38dp"
         android:textSize="20sp"
-        android:textColor="@color/colorPrimaryText"/>
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:textColor="@color/colorPrimaryText"
+        android:gravity="top" />
 
     <EditText
         android:layout_width="match_parent"
@@ -40,23 +43,23 @@
         android:text="Chore Doer"
         android:hint="chore doer"
         android:id="@+id/choreDoerTextView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="78dp"
         android:textSize="20sp"
-        android:textColor="@color/colorPrimaryText"/>
+        android:textColor="@color/colorPrimaryText"
+        android:layout_below="@+id/choreDescriptionTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="due date"
-        android:id="@+id/choreDueDateButton"
+        android:text="Due Date"
+        android:hint="pick a date"
+        android:id="@+id/choreDueDateEditText"
         android:onClick="showTimePickerDialog"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp"
         android:layout_below="@+id/choreDoerTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+        android:layout_centerHorizontal="true" />
 
 
 

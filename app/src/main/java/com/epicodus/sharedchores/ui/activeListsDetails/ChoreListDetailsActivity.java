@@ -4,6 +4,7 @@ package com.epicodus.sharedchores.ui.activeListsDetails;
 import android.os.Bundle;
 
 import android.os.RecoverySystem;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,12 +33,13 @@ import butterknife.ButterKnife;
 public class ChoreListDetailsActivity extends BaseActivity implements View.OnClickListener{
     private DatabaseReference mChoresReference;
     private ListView mListView;
-    private ChoreList mChoreList;
+    private Chore mChore;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
 
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    @Bind(R.id.addChorebutton) Button mAddChoreButton;
+    @Bind(R.id.addChorebutton)
+    FloatingActionButton mAddChoreButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class ChoreListDetailsActivity extends BaseActivity implements View.OnCli
     }
     public void showAddChoreDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        DialogFragment dialog = AddChoreDialogFragment.newInstance(mChoreList);
+        DialogFragment dialog = AddChoreDialogFragment.newInstance(mChore);
         dialog.show(fm, "AddChoreDialogFragment");
 
     }
